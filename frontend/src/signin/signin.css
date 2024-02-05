@@ -1,3 +1,26 @@
-.Signin {
-    background-color: red;
+@font-face {
+    font-family: IRANSANS;
+    src: url(IRANSANS.woff);
+}
+#mainGrid{
+    height: 100vh;
+}
+.input{
+    width: 90vw !important;
+}
+body{
+    background-color: #F0F0F0;
+    font-family: IRANSANS !important;
+}
+#input1-label{
+    font-family: IRANSANS !important;
+
+}
+#input2-label{
+    font-family: IRANSANS !important;
+
+}
+#btn{
+    font-family: IRANSANS !important;
+    width: 24vw;
 }
