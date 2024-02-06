@@ -1,13 +1,14 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
-import Signin from './signin/signin.jsx';
+import LogSign from './Components/LoginSignup/LogSign';
+// import Signin from './signin/signin.jsx';
 
 function App() {
   return (
     <div className="App">
-      بسم الله الرحمن الرحیم
+      <LogSign/>
 
-      <Signin />
+      {/* <Signin /> */}
     </div>
   );
 }
