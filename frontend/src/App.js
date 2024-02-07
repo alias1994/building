@@ -5,8 +5,6 @@ import Signin from './signin/signin.jsx';
 function App() {
   return (
     <div className="App">
-      بسم الله الرحمن الرحیم
-
       <Signin />
     </div>
   );
