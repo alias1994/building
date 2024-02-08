@@ -13,9 +13,6 @@ const PaperGrid = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-
-
-
 function App() {
 
     return (
@@ -27,7 +24,6 @@ function App() {
       </Grid>
     </Box>
     )
-
 }
 
 export default App;
