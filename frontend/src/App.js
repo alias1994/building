@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import './App.css';
+import TextFild from './component/text-fild.jsx'
 
 const PaperGrid = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -19,7 +20,7 @@ function App() {
     <Box>
       <Grid sx={{ height: '100vh' }} container justifyContent="center" alignItems="center">
         <PaperGrid item xs={6}>
-          1
+          {TextFild('نام کاربری')}
         </PaperGrid>
       </Grid>
     </Box>
