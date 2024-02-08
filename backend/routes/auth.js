@@ -1,13 +1,38 @@
+import getRandomValues from 'node:crypto'
 import app from '../app.js'
 import User from '../models/User.js'
+import Auth from '../models/Auth.js'
 
+const rand = () => Math.random().toString(36).substr(2);
+const tokenGenerator = () => rand() + rand()
+
+const addToken = async (id) => {
+    const token = tokenGenerator()
+    const newToken = new Auth({ token, userId: id })
+    await newToken.save()
+
+    return token
+}
 
 app.post('/register', async (req, res) => {
-    const user = new User(req.body)
-    const r = await user.save()
-    console.log(r)
+    const newUser = new User(req.body)
+
+    try {
+        const { firstname, lastname, username, id } = await newUser.save()  
+    } catch (error) {
+        console.log(error)
+        return res.send({
+            type: "ERROR",
+            body: { txt: 'username is duplicate' },
+        })
+    }
+
+    const newToken = await addToken(id)
     
-    res.send({ x: 2 })
+    res.send({
+        type: "SIGNIN",
+        body: { firstname, lastname, username, token: newToken },
+    })
 })
   
 app.post('/signin', async (req, res) => {
