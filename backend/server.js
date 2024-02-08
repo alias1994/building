@@ -6,7 +6,7 @@ import './db.js'
 import './routes/auth.js'
 
 app.get('/', async (req, res) => {
-  res.send('hello world')
+  res.send('بسم الله الرحمن الرحیم')
 })
 
 app.listen(3000, () => {
