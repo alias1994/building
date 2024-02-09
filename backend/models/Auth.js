@@ -5,8 +5,13 @@ const AuthSchema = new mongoose.Schema({
     token: {
         type: String,
         unique: true,
+        required: true
     },
-    userId: mongoose.Schema.Types.ObjectId,
+    userId:{
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        unique: true,
+      } 
 });
 
 const Auth = mongoose.model('Auth', AuthSchema);
