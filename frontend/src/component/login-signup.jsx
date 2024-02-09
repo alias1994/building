@@ -63,12 +63,12 @@ function LoginSingup(){
                         onChange={handleChange}
                         aria-label="Platform"
                     >
-                        {/*<TabList   textColor="secondary"*/}
+                        <TabList   textColor="secondary"
                                    indicatorColor="secondary"
                                    onChange={handleChange2} aria-label="lab API tabs example">
-                            <ToggleButtonCustom value="1">ورود</ToggleButtonCustom>
                             <ToggleButtonCustom value="2" >ثبت نام</ToggleButtonCustom>
-                        {/*</TabList>*/}
+                            <ToggleButtonCustom value="1">ورود</ToggleButtonCustom>
+                        </TabList>
                     </ToggleButtonGropCustom>
                     <TabPanel value="1"><LoginForm/></TabPanel>
                     <TabPanel value="2"><SignupForm/></TabPanel>
