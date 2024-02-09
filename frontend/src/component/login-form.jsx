@@ -4,7 +4,8 @@ function LoginForm (name){
     return(
         <div>
             {TextFild('نام کاربری')}
-            {CustomButton('نام کاربری')}
+            {TextFild('رمز عبور')}
+            {CustomButton('وارد شوید')}
         </div>
     )
 }
