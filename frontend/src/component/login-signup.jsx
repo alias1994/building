@@ -83,17 +83,17 @@ function LoginSingup(){
                         aria-label="Platform"
 
                     >
-                    <Grid container
-                          direction="row"
-                          justifyContent="center"
-                          alignItems="center" fullWidth sx={{ bgcolor: '#F3F3F3',borderRadius: "40px 40px 40px 40px",}}>
-                        <TabList fullWidth  textColor="warning"
-                                   indicatorColor="warning"
-                                   onChange={handleChange2} aria-label="lab API tabs example"
-                        >
-                            <LToggleButtonCustom value="2" >ثبت نام</LToggleButtonCustom>
-                            <RToggleButtonCustom value="1">ورود</RToggleButtonCustom>
-                        </TabList>
+                    <Grid container justifyContent="center"
+                          alignItems="center">
+                        <Grid fullWidth sx={{ bgcolor: '#F3F3F3',borderRadius: "40px 40px 40px 40px",}}>
+                            <TabList textColor="warning"
+                                       indicatorColor="warning"
+                                       onChange={handleChange2} aria-label="lab API tabs example"
+                            >
+                                <LToggleButtonCustom value="2" >ثبت نام</LToggleButtonCustom>
+                                <RToggleButtonCustom value="1">ورود</RToggleButtonCustom>
+                            </TabList>
+                        </Grid>
                     </Grid>
                     </ToggleButtonGropCustom>
                     <TabPanel value="1"><LoginForm/></TabPanel>
