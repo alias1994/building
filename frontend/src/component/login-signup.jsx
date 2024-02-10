@@ -17,11 +17,8 @@ const color5 = orange[900];
 
 const theme = createTheme({
     palette: {
-        primary: {
-            light: '#757ce8',
-            main: '#3f50b5',
-            dark: '#002884',
-            contrastText: '#fff',
+        gray: {
+            light: '#F3F3F3',
         },
         secondary: {
             light: '#ff7961',
@@ -41,12 +38,16 @@ const PaperGrid = styled(Paper)(({ theme }) => ({
 const RToggleButtonCustom = styled(ToggleButton)(({ theme }) => ({
     padding: theme.spacing(2),
     color: color5,
+    width:"150px",
+    border:"none",
     borderRadius: "40px 40px 40px 40px",
 }));
 const LToggleButtonCustom = styled(ToggleButton)(({ theme }) => ({
     padding: theme.spacing(2),
     color: color5,
-    borderRadius: "0px 40px 40px 0px",
+    width:"150px",
+    border:"none",
+    borderRadius: "40px 40px 40px 40px",
 }));
 const ToggleButtonGropCustom = styled(ToggleButtonGroup)(({ theme }) => ({
     color: theme.palette.text.primary,
@@ -70,7 +71,7 @@ function LoginSingup(){
             <PaperGrid item xs={6}>
                 <TabContext fullWidth value={value}>
                     <h2>به ساختمان خوش آمدید</h2>
-                    <Grid sx={{ bgcolor: 'background.paper' }}>
+                    <Grid sx={{ bgcolor: 'theme.gray' }}>
                     <ToggleButtonGropCustom
                         color="warning"
                         fullWidth
