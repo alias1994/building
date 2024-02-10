@@ -71,7 +71,6 @@ function LoginSingup(){
             <PaperGrid item xs={6}>
                 <TabContext fullWidth value={value}>
                     <h2>به ساختمان خوش آمدید</h2>
-                    <Grid sx={{ bgcolor: 'theme.gray' }}>
                     <ToggleButtonGropCustom
                         color="warning"
                         fullWidth
@@ -81,6 +80,7 @@ function LoginSingup(){
                         aria-label="Platform"
 
                     >
+                    <Grid fullWidth sx={{ bgcolor: '#F3F3F3',borderRadius: "40px 40px 40px 40px",}}>
                         <TabList fullWidth  textColor="warning"
                                    indicatorColor="warning"
                                    onChange={handleChange2} aria-label="lab API tabs example"
@@ -88,8 +88,8 @@ function LoginSingup(){
                             <LToggleButtonCustom value="2" >ثبت نام</LToggleButtonCustom>
                             <RToggleButtonCustom value="1">ورود</RToggleButtonCustom>
                         </TabList>
-                    </ToggleButtonGropCustom>
                     </Grid>
+                    </ToggleButtonGropCustom>
                     <TabPanel value="1"><LoginForm/></TabPanel>
                     <TabPanel value="2"><SignupForm/></TabPanel>
                 </TabContext>
