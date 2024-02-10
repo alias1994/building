@@ -36,21 +36,29 @@ const PaperGrid = styled(Paper)(({ theme }) => ({
     textAlign: 'center',
     color: theme.palette.text.secondary,
 }));
-const RToggleButtonCustom = styled(ToggleButton)(({ theme }) => ({
+const RToggleButtonCustom = styled(ToggleButton)(({ selectedColor }) => ({
     padding: theme.spacing(2),
     color: color5,
     width:"150px",
     border:"none",
     borderRadius: "40px 40px 40px 40px",
     fontFamily: "yekan",
+    '&.Mui-selected, &.Mui-selected:hover': {
+        color: 'white',
+        backgroundColor: selectedColor,
+      },
 }));
-const LToggleButtonCustom = styled(ToggleButton)(({ theme }) => ({
+const LToggleButtonCustom = styled(ToggleButton)(({ selectedColor }) => ({
     padding: theme.spacing(2),
     color: color5,
     width:"150px",
     border:"none",
     borderRadius: "40px 40px 40px 40px",
     fontFamily: "yekan",
+    '&.Mui-selected, &.Mui-selected:hover': {
+        color: 'white',
+        backgroundColor: selectedColor,
+      },
 }));
 const ToggleButtonGropCustom = styled(ToggleButtonGroup)(({ theme }) => ({
     color: theme.palette.text.primary,
@@ -83,17 +91,17 @@ function LoginSingup(){
                         aria-label="Platform"
 
                     >
-                    <Grid container justifyContent="center"
-                          alignItems="center">
-                        <Grid fullWidth sx={{ bgcolor: '#F3F3F3',borderRadius: "40px 40px 40px 40px",}}>
-                            <TabList textColor="warning"
-                                       indicatorColor="warning"
-                                       onChange={handleChange2} aria-label="lab API tabs example"
-                            >
-                                <LToggleButtonCustom value="2" >ثبت نام</LToggleButtonCustom>
-                                <RToggleButtonCustom value="1">ورود</RToggleButtonCustom>
-                            </TabList>
-                        </Grid>
+                    <Grid container
+                          direction="row"
+                          justifyContent="center"
+                          alignItems="center" fullWidth sx={{ bgcolor: '#F3F3F3',borderRadius: "40px 40px 40px 40px",}}>
+                        <TabList fullWidth  textColor="warning"
+                                   indicatorColor="warning"
+                                   onChange={handleChange2} aria-label="lab API tabs example"
+                        >
+                            <LToggleButtonCustom selectedColor="#F15F2B" value="2" >ثبت نام</LToggleButtonCustom>
+                            <RToggleButtonCustom selectedColor="#F15F2B" value="1">ورود</RToggleButtonCustom>
+                        </TabList>
                     </Grid>
                     </ToggleButtonGropCustom>
                     <TabPanel value="1"><LoginForm/></TabPanel>
