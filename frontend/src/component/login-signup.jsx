@@ -9,6 +9,7 @@ import SignupForm from "./signup-form";
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Tab from '@mui/material/Tab';
+import './login-singup.css'
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
@@ -41,6 +42,7 @@ const RToggleButtonCustom = styled(ToggleButton)(({ theme }) => ({
     width:"150px",
     border:"none",
     borderRadius: "40px 40px 40px 40px",
+    fontFamily: "yekan",
 }));
 const LToggleButtonCustom = styled(ToggleButton)(({ theme }) => ({
     padding: theme.spacing(2),
@@ -48,6 +50,7 @@ const LToggleButtonCustom = styled(ToggleButton)(({ theme }) => ({
     width:"150px",
     border:"none",
     borderRadius: "40px 40px 40px 40px",
+    fontFamily: "yekan",
 }));
 const ToggleButtonGropCustom = styled(ToggleButtonGroup)(({ theme }) => ({
     color: theme.palette.text.primary,
@@ -70,7 +73,7 @@ function LoginSingup(){
 
             <PaperGrid item xs={6}>
                 <TabContext fullWidth value={value}>
-                    <h2>به ساختمان خوش آمدید</h2>
+                    <h2> به ساختمان خوش آمدید</h2>
                     <ToggleButtonGropCustom
                         color="warning"
                         fullWidth
