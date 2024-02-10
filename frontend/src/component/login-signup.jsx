@@ -15,6 +15,22 @@ import TabPanel from '@mui/lab/TabPanel';
 import { orange } from '@mui/material/colors';
 const color5 = orange[900];
 
+const theme = createTheme({
+    palette: {
+        primary: {
+            light: '#757ce8',
+            main: '#3f50b5',
+            dark: '#002884',
+            contrastText: '#fff',
+        },
+        secondary: {
+            light: '#ff7961',
+            main: '#f44336',
+            dark: '#ba000d',
+            contrastText: '#000',
+        },
+    },
+});
 const PaperGrid = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
     ...theme.typography.body2,
@@ -22,17 +38,16 @@ const PaperGrid = styled(Paper)(({ theme }) => ({
     textAlign: 'center',
     color: theme.palette.text.secondary,
 }));
-const ToggleButtonCustom = styled(ToggleButton)(({ theme }) => ({
+const RToggleButtonCustom = styled(ToggleButton)(({ theme }) => ({
     padding: theme.spacing(2),
     color: color5,
+    borderRadius: "40px 40px 40px 40px",
 }));
-    const theme = createTheme({
-        palette: {
-            primary: {
-                main: color5,
-            }
-        },
-    });
+const LToggleButtonCustom = styled(ToggleButton)(({ theme }) => ({
+    padding: theme.spacing(2),
+    color: color5,
+    borderRadius: "0px 40px 40px 0px",
+}));
 const ToggleButtonGropCustom = styled(ToggleButtonGroup)(({ theme }) => ({
     color: theme.palette.text.primary,
 }));
@@ -53,23 +68,27 @@ function LoginSingup(){
         <Grid sx={{ height: '100vh' }} container justifyContent="center" alignItems="center">
 
             <PaperGrid item xs={6}>
-                <TabContext value={value}>
+                <TabContext fullWidth value={value}>
                     <h2>به ساختمان خوش آمدید</h2>
+                    <Grid sx={{ bgcolor: 'background.paper' }}>
                     <ToggleButtonGropCustom
-                        color="primary"
+                        color="warning"
                         fullWidth
                         value={alignment}
                         exclusive
                         onChange={handleChange}
                         aria-label="Platform"
+
                     >
-                        <TabList   textColor="secondary"
-                                   indicatorColor="secondary"
-                                   onChange={handleChange2} aria-label="lab API tabs example">
-                            <ToggleButtonCustom value="2" >ثبت نام</ToggleButtonCustom>
-                            <ToggleButtonCustom value="1">ورود</ToggleButtonCustom>
+                        <TabList fullWidth  textColor="warning"
+                                   indicatorColor="warning"
+                                   onChange={handleChange2} aria-label="lab API tabs example"
+                        >
+                            <LToggleButtonCustom value="2" >ثبت نام</LToggleButtonCustom>
+                            <RToggleButtonCustom value="1">ورود</RToggleButtonCustom>
                         </TabList>
                     </ToggleButtonGropCustom>
+                    </Grid>
                     <TabPanel value="1"><LoginForm/></TabPanel>
                     <TabPanel value="2"><SignupForm/></TabPanel>
                 </TabContext>
