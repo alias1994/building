@@ -1,8 +1,6 @@
-import getRandomValues from 'node:crypto'
 import app from '../app.js'
 import User from '../models/User.js'
 import Auth from '../models/Auth.js'
-import { log } from 'node:console';
 
 const rand = () => Math.random().toString(36).substr(2);
 const tokenGenerator = () => rand() + rand()
@@ -17,17 +15,14 @@ const addToken = async (id) => {
 
 const errorHandler = (e) => {
     e = e.toString()
-    console.log(e);
-    if (e.includes("E11000") && e.includes("duplicate"))
-        return "این نام کاربری قبلا ثبت شده"
+    if (e.includes("E11000"))
+        return "این نام کاربری قبلا ثبت شده است."
     else if (e.matchAll(/(?<=`)\w+(?=` is required)/g)){
-        const o = {firstname: "نام" , lastname: "نام خانوادگی ", password: "رمز عبور"}
-        console.log(o.firstname);
+        const dict = {firstname: "نام" , lastname: "نام خانوادگی ", password: "رمز عبور"}
         const arr = e.match(/(?<=`)\w+(?=` is required)/g)
-        console.log(...arr);
         let result = ""
         arr.forEach(element => {
-            result += `${o[element]} نمی تواند خالی باشد \n`
+            result += `${dict[element]} نمی تواند خالی باشد. \n`
         });
         return result
     }
@@ -42,9 +37,9 @@ app.post('/register', async (req, res) => {
             type: "SIGNIN",
             body: {
                 firstname: newUser.firstname,
-                lastname: newUser.lastname, 
-                username: newUser.username, 
-                token: newToken }
+                lastname:  newUser.lastname, 
+                username:  newUser.username, 
+                token:     newToken }
         })
 
     } catch (error) {
@@ -57,53 +52,41 @@ app.post('/register', async (req, res) => {
 })
   
 app.post('/signin', async (req, res) => {
-    try {
-        const foundedUser = await User.findOne({
-            username : req.body.username, 
-            password: req.body.password
+    const foundedUser = await User.findOne({
+        username : req.body.username, 
+        password: req.body.password
+    })
+    
+    if (foundedUser){
+        const newToken = await addToken(foundedUser._id)
+        res.send({
+            type: "SIGNIN",
+            body: {
+                firstname: foundedUser.firstname,
+                lastname:  foundedUser.lastname, 
+                username:  foundedUser.username, 
+                token:     newToken },
         })
-        
-        if (foundedUser){
-            const newToken = await addToken(foundedUser._id)
-            res.send({
-                type: "SIGNIN",
-                body: {
-                    firstname: foundedUser.firstname,
-                    lastname: foundedUser.lastname, 
-                    username: foundedUser.username, 
-                    token: newToken },
-            })
-        } else {
-            throw new Error("کابر یافت نشد، نام کاربری یا رمزعبور اشتباه است")
-        }
-
-    } catch (error) {
-        console.log("error: ",error);
+    } else {
         res.send({
             type: "ERROR",
-            body: { txt: error.toString() },
+            body: { txt: "کاربر یافت نشد. نام کاربری یا رمز عبور اشتباه است."},
         })
     }
 })
   
 app.post('/authenticate', async (req, res) => {
     const authedUser = await Auth.findOne({token: req.body.token })
-    try {
-        if (authedUser){
-            const signedUser = await User.findById(authedUser.userId)
-            res.send({
-                type: "SIGNIN",
-                body: { token: req.body.token,
-                        firstname: signedUser.firstname,
-                        lastname: signedUser.lastname,
-                        username: signedUser.username }
-            })
-        } else {
-            res.send({ type: "SIGNOUT" })
-        }   
-    } catch (error) {
-        console.log(error.toString());
-    }
-    
-    
+    if (authedUser){
+        const signedUser = await User.findById(authedUser.userId)
+        res.send({
+            type: "SIGNIN",
+            body: { token: req.body.token,
+                    firstname: signedUser.firstname,
+                    lastname:  signedUser.lastname,
+                    username:  signedUser.username }
+        })
+    } else {
+        res.send({ type: "SIGNOUT" })
+    }   
 })
