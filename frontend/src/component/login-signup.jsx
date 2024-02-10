@@ -94,7 +94,10 @@ function LoginSingup(){
                     <Grid container
                           direction="row"
                           justifyContent="center"
-                          alignItems="center" fullWidth sx={{ bgcolor: '#F3F3F3',borderRadius: "40px 40px 40px 40px",}}>
+                          alignItems="center" >
+                            <Grid item fullWidth sx={{ bgcolor: '#F3F3F3',borderRadius: "40px 40px 40px 40px",}}>
+
+                            
                         <TabList fullWidth  textColor="warning"
                                    indicatorColor="warning"
                                    onChange={handleChange2} aria-label="lab API tabs example"
@@ -102,6 +105,7 @@ function LoginSingup(){
                             <LToggleButtonCustom selectedColor="#F15F2B" value="2" >ثبت نام</LToggleButtonCustom>
                             <RToggleButtonCustom selectedColor="#F15F2B" value="1">ورود</RToggleButtonCustom>
                         </TabList>
+                        </Grid>
                     </Grid>
                     </ToggleButtonGropCustom>
                     <TabPanel value="1"><LoginForm/></TabPanel>
