@@ -80,7 +80,10 @@ function LoginSingup(){
                         aria-label="Platform"
 
                     >
-                    <Grid fullWidth sx={{ bgcolor: '#F3F3F3',borderRadius: "40px 40px 40px 40px",}}>
+                    <Grid container
+                          direction="row"
+                          justifyContent="center"
+                          alignItems="center" fullWidth sx={{ bgcolor: '#F3F3F3',borderRadius: "40px 40px 40px 40px",}}>
                         <TabList fullWidth  textColor="warning"
                                    indicatorColor="warning"
                                    onChange={handleChange2} aria-label="lab API tabs example"
