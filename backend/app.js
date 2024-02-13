@@ -6,7 +6,7 @@ import Auth from './models/Auth.js'
 
 const checkToken = async function (req, res , next) {
 
-    if (req.path === "./signin" || req.path === "./register" ||(req.path === "/projects" && req.method === "GET")){
+    if (req.path === "./signin" || req.path === "./register" ||(req.path === "/projects" && req.method === "GET" || req.path === "/upload")){
         next()
     } else {
         const token = req.body.token
@@ -22,6 +22,7 @@ const checkToken = async function (req, res , next) {
 
 const app = express()
 
+app.set('view engine', 'ejs');
 
 
 
