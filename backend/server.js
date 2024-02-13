@@ -4,6 +4,9 @@ import './db.js'
 
 // routes
 import './routes/auth.js'
+import './routes/project.js'
+import './routes/task.js'
+import './routes/upload.js'
 
 app.get('/', async (req, res) => {
   res.send('بسم الله الرحمن الرحیم')

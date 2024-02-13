@@ -17,12 +17,12 @@ const errorHandler = (e) => {
     e = e.toString()
     if (e.includes("E11000"))
         return "این نام کاربری قبلا ثبت شده است."
-    else if (e.matchAll(/(?<=`)\w+(?=` is required)/g)){
-        const dict = {firstname: "نام" , lastname: "نام خانوادگی ", password: "رمز عبور"}
+    else if (e.match(/(?<=`)\w+(?=` is required)/g)){
+        // const dict = {firstname: "نام" , lastname: "نام خانوادگی ", password: "رمز عبور"}
         const arr = e.match(/(?<=`)\w+(?=` is required)/g)
         let result = ""
         arr.forEach(element => {
-            result += `${dict[element]} نمی تواند خالی باشد. \n`
+            result += `${element} صحیح وارد نشده است. \n`
         });
         return result
     }
