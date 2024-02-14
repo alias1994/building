@@ -22,12 +22,11 @@ const storage = multer.diskStorage({
         res.status(400).send('No file uploaded.');
         return;
     }
-
     res.status(200).send({ 
         type: "UPLOAD" ,
         body:{ 
             filename: req.file.filename ,
-            mimtype: req.file.mimetype ,
+            mimetype: req.file.mimetype ,
             path: req.file.path 
         }
 

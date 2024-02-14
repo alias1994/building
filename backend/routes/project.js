@@ -1,7 +1,6 @@
 import app from '../app.js'
 import Project from '../models/Project.js'
 import Auth from '../models/Auth.js'
-import mongoose from 'mongoose'
 
 const getIdByToken = async (token) => {
     const authedUser = await Auth.findOne({token: token})
@@ -10,11 +9,18 @@ const getIdByToken = async (token) => {
 
 const errorHandler = (e) => {
     e = e.toString()
+
     if (e.includes("E11000"))
         return "این نام قبلا ثبت شده است."
     else if (e.match(/(?<=`)\w+(?=` is required)/g)){
-        const dict = {title: "نام"}
         const arr = e.match(/(?<=`)\w+(?=` is required)/g)
+        let result = ""
+        arr.forEach(element => {
+            result += `${element} صحیح وارد نشده است \n`
+        });
+        return result
+    } else if (e.includes("Cast")){
+        const arr = e.match(/(?<=path \\")\w+(?=\\")/g)
         let result = ""
         arr.forEach(element => {
             result += `${element} صحیح وارد نشده است \n`
@@ -55,10 +61,11 @@ app.get('/projects', async (req, res) => {
 app.post('/projects', async (req, res) => {
     try {
         const ownerId = await getIdByToken(req.body.token)
+        const mainBody = req.body.body
         const newProject = new Project({
-            title: req.body.body.title,
+            title: mainBody.title,
             ownerId: ownerId, 
-            parentId: req.body.body.parentId ? req.body.body.parentId : null  ,
+            parentId: mainBody.parentId ? mainBody.parentId : null  ,
             created_at: Date(),
             modified_at: Date(),
         })
