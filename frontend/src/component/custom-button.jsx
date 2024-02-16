@@ -13,10 +13,10 @@ import './custom-button.css'
 
 const DemoButton = styled(Button)(({ theme }) => ({
     // width: 300,
-    maxWidth: '300px', maxHeight: '60px', minWidth: '300px', minHeight: '60px',
+    maxWidth: '340px', maxHeight: '50px', minWidth: '340px', minHeight: '50px',
     ...theme.typography.body2,
     margin:"10px",
-    borderRadius: "20px",
+    borderRadius: "12px",
     backgroundColor: "#ED7662",
     color: "#FFFFFF",
     fontFamily:"vazir"

@@ -9,10 +9,11 @@ import { styled } from '@mui/material/styles';
 import './text-fild.css'
 
 const DemoInput = styled(TextField)(({ theme }) => ({
-    width: 300,
+    width: '340px',
+    height:'50px',
     ...theme.typography.body2,
-    borderRadius: "10px",
-    margin: "12px",
+    borderRadius: "45px",
+    margin: "12px 6px 6px 12px",
     textAlign: 'right',
     backgroundColor: '#F3F3F3',
     disableUnderline: true,

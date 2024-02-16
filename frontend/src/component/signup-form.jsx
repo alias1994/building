@@ -8,7 +8,7 @@ function SignupForm (name){
             {TextFild('نام کاربری')}
             {TextFild('رمز عبور')}
             {TextFild('تکرار رمز عبور')}
-            {CustomButton('وارد شوید')}
+            {CustomButton('ثبت نام')}
         </div>
     )
 }
