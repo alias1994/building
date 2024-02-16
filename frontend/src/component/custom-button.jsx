@@ -17,7 +17,7 @@ const DemoButton = styled(Button)(({ theme }) => ({
     ...theme.typography.body2,
     margin:"10px",
     borderRadius: "12px",
-    backgroundColor: "#ED7662",
+    backgroundColor: "#F15F2B",
     color: "#FFFFFF",
     fontFamily:"vazir"
   }))
