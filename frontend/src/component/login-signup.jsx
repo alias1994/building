@@ -41,10 +41,12 @@ const RToggleButtonCustom = styled(ToggleButton)(({ selectedColor }) => ({
     padding: theme.spacing(2),
     color: color5,
     width:"170px",
+    height:'55px',
     border:"none",
     borderRadius: "40px 40px 40px 40px",
     fontFamily: "yekan",
     '&.Mui-selected, &.Mui-selected:hover': {
+        height:'55px',
         color: 'white',
         backgroundColor: selectedColor,
       },
@@ -53,10 +55,12 @@ const LToggleButtonCustom = styled(ToggleButton)(({ selectedColor }) => ({
     padding: theme.spacing(2),
     color: color5,
     width:"170px",
+    height:'55px',
     border:"none",
     borderRadius: "40px 40px 40px 40px",
     fontFamily: "yekan",
     '&.Mui-selected, &.Mui-selected:hover': {
+        height:'55px',
         color: 'white',
         backgroundColor: selectedColor,
       },
@@ -95,7 +99,7 @@ function LoginSingup(){
                           direction="row"
                           justifyContent="center"
                           alignItems="center" >
-                            <Grid item fullWidth sx={{ bgcolor: '#F3F3F3',borderRadius: "40px 40px 40px 40px",}}>
+                            <Grid item fullWidth sx={{ bgcolor: '#F3F3F3',borderRadius: "40px 40px 40px 40px",height:'55px'}}>
 
                             
                         <TabList fullWidth  textColor="warning"
