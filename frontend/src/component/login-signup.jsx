@@ -14,8 +14,8 @@ import './login-singup.css'
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
-import { orange } from '@mui/material/colors';
-const color5 = orange[900];
+import { orange , grey} from '@mui/material/colors';
+const color5 = grey[900];
 
 const theme = createTheme({
     palette: {
@@ -90,7 +90,6 @@ function LoginSingup(){
                         exclusive
                         onChange={handleChange}
                         aria-label="Platform"
-
                     >
                     <Grid container
                           direction="row"
