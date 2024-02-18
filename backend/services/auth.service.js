@@ -77,9 +77,13 @@ const authUser = async (req, res) => {
     }   
 }
 
+const getUser = async (req, res) => {
+    
+}
 export {
 
     registerUser,
     signinUser,
-    authUser
+    authUser,
+    getUser
 }
