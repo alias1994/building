@@ -10,15 +10,13 @@ function handleClick(event) {
   console.info('You clicked a breadcrumb.');
 }
 
-export default function CustomSeparator() {
-  const breadcrumbs = [
-    <Link underline="hover" key="2" color="#9E9E9E" href="/" onClick={handleClick}>
-      بعثت تا ظهور
-    </Link>,
-    <Link underline="hover" key="3" color="#9E9E9E" href="/" onClick={handleClick}>
-        موسیقی
-    </Link>,
-  ];
+
+export default function CustomSeparator(arr) {
+  const breadcrumbs = arr.map(function(item, index){ 
+    return <Link underline="hover" key={index} color="#9E9E9E" href="/" onClick={handleClick}>
+        {item}
+    </Link> }
+    )
 
   return (
         <Grid container dir="rtl" direction="row">
@@ -28,8 +26,13 @@ export default function CustomSeparator() {
                 </Typography>
             </Grid>
             <Grid sx={{marginRight: '5px'}}>
-                <Breadcrumbs separator=">" color="#9E9E9E" aria-label="breadcrumb" fontFamily="yekan-bakh" dir="rtl" fontSize="22px">
-                    {breadcrumbs}
+                <Breadcrumbs separator=">" 
+                color="#9E9E9E" 
+                aria-label="breadcrumb" 
+                fontFamily="yekan-bakh" 
+                dir="rtl" 
+                fontSize="22px">
+                {breadcrumbs}
                 </Breadcrumbs>
             </Grid>
         </Grid>
