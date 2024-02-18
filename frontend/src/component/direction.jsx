@@ -16,6 +16,7 @@ export default function CustomSeparator(arr) {
     return <Link underline="hover" key={index} color="#9E9E9E" href="/" onClick={handleClick}>
         {item}
     </Link> }
+    
     )
 
   return (
