@@ -9,6 +9,7 @@ function App() {
 
     return (
         <Box>
+            
             <LoginSignup/>
         </Box>
     )
