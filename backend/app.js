@@ -6,7 +6,7 @@ import Auth from './models/Auth.js'
 
 const checkToken = async function (req, res , next) {
 
-    if (req.path === "/" ||req.path === "/signin" || req.path === "/register" ||(req.path === "/projects" && req.method === "GET" || req.path === "/upload")){
+    if (req.path === "/signin" || req.path === "/register" ||(req.path === "/projects" && req.method === "GET" || req.path === "/upload")){
         console.log("salam");
         next()
     } else {

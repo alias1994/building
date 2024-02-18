@@ -1,5 +1,12 @@
 import Task from "../models/Task.js";
+import User from "../models/User.js";
 import { getIdByToken, errorHandler } from "./auxiliary.service.js";
+
+const getFullNameById = async id => {
+    const foundedUser = await User.findById(id)
+    return (foundedUser.firstname + " " + foundedUser.lastname)
+}
+
 
 const createTask = async (req, res) => {
     try {
@@ -48,6 +55,57 @@ const createTask = async (req, res) => {
     }
 }
 
+const getTask = async (req, res) => {
+    try {
+        const taskId = req.body.body.taskId
+        let foundedTask = await Task.findById(taskId)
+        foundedTask._doc.ownername = await getFullNameById(foundedTask.ownerId)
+        res.send({
+            type: "GET_TASK",
+            body: foundedTask
+        })
+    } catch (error) {
+        res.send({
+            type: "ERROR",
+            body: {txt : errorHandler(error)}
+        })   
+    }
+
+
+}
+
+const updateTask = async (req, res) => {
+    try {
+        const filter = {_id: req.body.body.id}
+        console.log(filter);
+        const update = (req.body.body)
+        delete(update.id)
+        await Task.findByIdAndUpdate(filter, update)
+        const updatedTask = await Task.findOne(filter)
+        res.send({
+            type: "UPDATE_TSAK",
+            body:{
+                title: updatedTask.title,
+                desc: updatedTask.desc,
+                floor: updatedTask.floor,
+                prerequisites: updatedTask.prerequisites,
+                image: updatedTask.image,
+                file: updatedTask.file
+            }
+        })
+        
+    } catch (error) {
+        res.send({
+            type: "ERROR",
+            body: {txt : errorHandler(error)}
+        })   
+    }
+
+
+}
+
 export{
-    createTask
+    createTask,
+    getTask,
+    updateTask
 }
