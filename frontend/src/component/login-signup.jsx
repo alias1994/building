@@ -9,12 +9,13 @@ import SignupForm from "./signup-form";
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Tab from '@mui/material/Tab';
+import { Typography } from '@mui/material';
 import './login-singup.css'
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
-import { orange } from '@mui/material/colors';
-const color5 = orange[900];
+import { orange , grey} from '@mui/material/colors';
+const color5 = grey[900];
 
 const theme = createTheme({
     palette: {
@@ -39,11 +40,13 @@ const PaperGrid = styled(Paper)(({ theme }) => ({
 const RToggleButtonCustom = styled(ToggleButton)(({ selectedColor }) => ({
     padding: theme.spacing(2),
     color: color5,
-    width:"150px",
+    width:"170px",
+    height:'55px',
     border:"none",
     borderRadius: "40px 40px 40px 40px",
     fontFamily: "yekan",
     '&.Mui-selected, &.Mui-selected:hover': {
+        height:'55px',
         color: 'white',
         backgroundColor: selectedColor,
       },
@@ -51,11 +54,13 @@ const RToggleButtonCustom = styled(ToggleButton)(({ selectedColor }) => ({
 const LToggleButtonCustom = styled(ToggleButton)(({ selectedColor }) => ({
     padding: theme.spacing(2),
     color: color5,
-    width:"150px",
+    width:"170px",
+    height:'55px',
     border:"none",
     borderRadius: "40px 40px 40px 40px",
     fontFamily: "yekan",
     '&.Mui-selected, &.Mui-selected:hover': {
+        height:'55px',
         color: 'white',
         backgroundColor: selectedColor,
       },
@@ -77,11 +82,11 @@ function LoginSingup(){
         setValue(newValue);
     };
     return(
-        <Grid sx={{ height: '100vh' }} container justifyContent="center" alignItems="center">
+        <Grid sx={{ height: '100vh'}} container justifyContent="center" alignItems="center">
 
-            <PaperGrid item xs={6}>
+            <PaperGrid item xs={6} sx={{borderRadius:'30px'}}>
                 <TabContext fullWidth value={value}>
-                    <h2> به ساختمان خوش آمدید</h2>
+                    <Typography sx={{margin:'30px 0px 25px 0px', fontFamily:'yekan' , fontSize:29 , color:'black'}}>!به ساختمان خوش آمدید</Typography>
                     <ToggleButtonGropCustom
                         color="warning"
                         fullWidth
@@ -89,13 +94,12 @@ function LoginSingup(){
                         exclusive
                         onChange={handleChange}
                         aria-label="Platform"
-
                     >
                     <Grid container
                           direction="row"
                           justifyContent="center"
                           alignItems="center" >
-                            <Grid item fullWidth sx={{ bgcolor: '#F3F3F3',borderRadius: "40px 40px 40px 40px",}}>
+                            <Grid item fullWidth sx={{ bgcolor: '#F3F3F3',borderRadius: "40px 40px 40px 40px",height:'55px'}}>
 
                             
                         <TabList fullWidth  textColor="warning"
@@ -108,8 +112,14 @@ function LoginSingup(){
                         </Grid>
                     </Grid>
                     </ToggleButtonGropCustom>
-                    <TabPanel value="1"><LoginForm/></TabPanel>
-                    <TabPanel value="2"><SignupForm/></TabPanel>
+                    <TabPanel value="1">
+                    <Typography sx={{margin:'10px 10px 7px 10px', fontFamily:'yekan' , fontSize:17 , color:'black',textAlign:'right'}}>.لطفا اطلاعات زیر را پر کنید</Typography>
+                        <LoginForm/>
+                        </TabPanel>
+                    <TabPanel value="2">
+                    <Typography sx={{margin:'10px 10px 7px 10px', fontFamily:'yekan' , fontSize:17 , color:'black',textAlign:'right'}}>.لطفا اطلاعات زیر را پر کنید</Typography>
+                        <SignupForm/>
+                        </TabPanel>
                 </TabContext>
 
 

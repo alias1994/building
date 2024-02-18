@@ -4,7 +4,6 @@ import Grid from '@mui/material/Grid';
 import './App.css';
 import LoginSignup from "./component/login-signup";
 
-
 function App() {
 
     return (
