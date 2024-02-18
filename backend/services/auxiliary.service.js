@@ -1,12 +1,20 @@
 import Auth from "../models/Auth.js"
 
 const errorHandler = (e) => {
+    const dict = {
+        firstname: "نام",
+        lastname: "نام خانوادگی",
+        username:"نام کاربری",
+        password:"رمزعبور",
+        title:"عنوان",
+        _id: "آیدی",
+    }
     e = e.toString()
     if (e.includes("E11000")){
         const arr = e.match(/(?<={ )\w+(?=: )/g)
         let result = ""
         arr.forEach(element => {
-            result += `${element} قبلا وارد شده است. \n`
+            result += `${dict[element]} قبلا وارد شده است. \n`
         });
         return result        
     }
@@ -14,14 +22,23 @@ const errorHandler = (e) => {
         const arr = e.match(/(?<=`)\w+(?=` is required)/g)
         let result = ""
         arr.forEach(element => {
-            result += `${element} صحیح وارد نشده است \n`
+            result += `${dict[element]} صحیح وارد نشده است \n`
         });
         return result
-    } else if (e.includes("Cast")){
+    } 
+    else if (e.includes("Cast") && e.match(/(?<=path \\")\w+(?=\\")/g)){
         const arr = e.match(/(?<=path \\")\w+(?=\\")/g)
         let result = ""
         arr.forEach(element => {
-            result += `${element} صحیح وارد نشده است \n`
+            result += `${dict[element]} صحیح وارد نشده است \n`
+        });
+        return result
+    }
+    else if (e.includes("Cast") && e.match(/(?<=path ")\w+(?=")/g)){
+        const arr = e.match(/(?<=path ")\w+(?=")/g)
+        let result = ""
+        arr.forEach(element => {
+            result += `${dict[element]} صحیح وارد نشده است \n`
         });
         return result
     }
