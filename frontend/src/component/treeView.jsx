@@ -1,15 +1,12 @@
 import * as React from 'react';
-// import React from 'react'
 import Box from '@mui/material/Box';
-// import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-// import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import { TreeView } from '@mui/x-tree-view/TreeView';
 import { TreeItem } from '@mui/x-tree-view/TreeItem';
 import { Container} from '@mui/material';
 import Typography from '@mui/material/Typography';
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleDown, faCircleUp } from '@fortawesome/free-solid-svg-icons';
 
 
 const data = {
@@ -59,12 +56,9 @@ const data = {
   
 };
 
-
 export default function treeView () {
 	const renderTree = (nodes) => (
 		<Container>
-		  {/* <i class="fa-sharp fa-regular fa-chevron-down" sx={{color: '#000000'}}></i> */}
-		  {/* <FontAwesomeIcon icon="fa-sharp fa-regular fa-chevron-down" sx={{color: "#000000",}} /> */}
 		<TreeItem 
 		  nodeId={nodes.id} 
 		  label={
@@ -90,15 +84,12 @@ export default function treeView () {
 		  ":hover": {
 			border: "2px solid rgba(241, 95, 43, 1)",
 			backgroundColor: 'rgba(241, 95, 43, 0.25)',
-			// boxShadow: 4,
-			// paddingRight: "20px",
 			overflow: 'visible',
 		  },
 		  maxHeight: "30px",
 		  maxWidth: 'auto',
 		  height: "fit-content",
 		  width: "100%",
-		//   boxDirection: 'ltr'
 		  
 		  
 		  }} >
@@ -117,23 +108,19 @@ export default function treeView () {
 
   return (
     <Box sx={{
-		// display: 'inline-block',
-		// flexDirection: 'column',
-		// flexGrow: 1,
-		// overflowX: 'scroll',
+		
 		border: '1px solid gray',
 		height: '100hv',
-		width: '50%'
+		width: '50%',
+		bgcolor: "white",
 		 }}
-		 dir='rtl'
+		 
 		 >
 		<TreeView
 		  aria-label="rich object"
-		  defaultCollapseIcon={<FontAwesomeIcon icon={faCircleUp} style={{color: "#f15f2b",}} />}
-		  defaultExpandIcon={<FontAwesomeIcon icon={faCircleDown} style={{color: "#f15f2b",}} />}
+		  defaultCollapseIcon={<ExpandLessIcon></ExpandLessIcon>}
+		  defaultExpandIcon={<ExpandMoreIcon></ExpandMoreIcon>}
 		  defaultExpanded={['root']}
-  
-		  dir='rtl'
 		>
 		  {renderTree(data)}
 		</TreeView>
