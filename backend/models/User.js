@@ -17,7 +17,27 @@ const UserSchema = new mongoose.Schema({
     password: {
       type: String,
       required: true
-    }  });
+    },
+    sex: {
+      type: String,
+      enum: {
+        values : ["male" , "female"],
+        message : "enum validator failded, state must be `male` or `female` "
+    },
+    default: "male",
+      required: false,
+    },
+    birthday: {
+      type: Date,
+      required: false,
+      default: Date.now()
+    },
+    email: {
+      type: String,
+      required: false,
+      default: null
+    }
+  });
 
 const User = mongoose.model('User', UserSchema);
 
