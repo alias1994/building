@@ -1,174 +1,106 @@
-import React from 'react'
-import arrow from '@mui/icons-material/KeyboardArrowDownRounded';
-const Selector = function (){
-    return <div className='w-72 font-medium h-80'>
-        <div className='bg-white w-full p-2 flex items-center justify-center rounded'>
-            <img src={arrow} alt=""/>
-            انتخاب طبقه
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
+import React, { useState } from "react";
+import Select, { components } from 'react-select';
+import './custom-button.css';
+import '@fontsource/roboto/700.css';
+const SelectInput = () => {
+    const [selectedValue, setSelectedValue] = useState(null);
+    const [menuIsOpen, setMenuIsOpen] = useState(false);
+    const handleSelectChange = (newValue) => {
+        setSelectedValue(newValue);
+    };
 
-        </div>
-    </div>
-}
+    const DropdownIndicator = props => {
+        return (
+            <components.DropdownIndicator {...props}>
+                {props.selectProps.menuIsOpen ?
+                    <IoIosArrowUp style={{fontSize: '30px', color: '#9E9E9E'}} />
+                    : <IoIosArrowDown style={{fontSize: '30px', color: '#9E9E9E'}} />}
+            </components.DropdownIndicator>
+        );
+    };
 
+    const customComponents = {
+        DropdownIndicator,
+        IndicatorSeparator: () => null, // برای حذف جداکننده
+    };
 
+    const customStyles = {
+        control: (provided) => ({
+            ...provided,
+            width: '415px',
+            border: 'none',
+            boxShadow: 'none',
+            backgroundColor: 'transparent',
+            marginRight:'10px',
+            itemAlign:'left',
+            color:'#9E9E9E',
+            fontFamily:'vazir'
+        }),
+        menu: (provided) => ({//این کادر کلی باز شونده رو کنترل می‌کنه
+            marginRight:'275px',
+            ...provided,
+            width:'160px',
+            backgroundColor: '#F3F3F3',
+            borderRadius: '20px',
+            boxShadow: '0 2px 5px rgba(0, 0, 0, 0.15)',
+            color:'#9E9E9E',
+            fontFamily:'vazir'
 
-
-
-
-export default Selector
-
-//-------------------------------------------------
-/*import * as React from 'react';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormHelperText from '@mui/material/FormHelperText';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import arrow from '@mui/icons-material/KeyboardArrowDownRounded'; // اصلاح شده
-import './custom-button.css'
-const styles = {
-    label: {
-        direction: "rtl",
-        textAlign: 'right',
-        alignItems:'right',
-        marginLeft: 46,
-        color:'#9E9E9E',
-        fontSize:20,
-        fontWeight:500,
-
-    },
-    icon: {
-        position: 'absolute',
-        left: 4, // تنظیم موقعیت افقی آیکون
-        top: 4, // تنظیم موقعیت عمودی آیکون
-    },
-    bg: {
-        fontFamily:'vazir',
-        width: 438,
-        height: 64,
-        backgroundColor: '#F3F3F3',
-        borderRadius: 45,
-        direction: 'rtl',
-        color:'#9E9E9E',
-        textAlign: 'right',
-    }
-};
-
-export default function SelectLabels() {
-    const [age, setAge] = React.useState('');
-
-    const handleChange = (event) => {
-        setAge(event.target.value);
+        }),
+        option: (provided, state) => ({//این هم دونه دونهٔ آیتم‌ها رو کنترل می‌کنه
+            ...provided,
+            width: '150px',
+            height:'40px',
+            backgroundColor: state.isSelected ? 'blue' : '#F3F3F3',
+            color: state.isSelected ? 'white' : '#9E9E9E',
+            '&:hover': {
+                backgroundColor: 'lightgray',
+            },
+            borderRadius: '45px',
+            marginRight: '5px',
+            borderBottom: '1px #9E9E9E solid',
+            fontFamily:'vazir'
+        }),
     };
 
     return (
-        <div>
-            <FormControl  sx={{ m: 1, minWidth: 120 }}>
-                <InputLabel  id="demo-simple-select-label" sx={styles.label}>
-                    پروژه
-                </InputLabel>
-                <Select
-                    sx={{...styles.bg,}}
-                    IconComponent={arrow}
-                    value={age}
-                    onChange={handleChange}
-                >
-                    <MenuItem  sx={styles.bg}>بعثت تا ظهور</MenuItem>
-                    <MenuItem  sx={styles.bg}>اسرا</MenuItem>
-                    <MenuItem  sx={styles.bg}>ساختمان</MenuItem>
-                </Select>
-            </FormControl>
+        <div dir='rtl' style={{
+            userSelect:'none',
+            width: "438px",
+            height: "64px",
+            borderRadius: "45px",
+            backgroundColor: "#F3F3F3",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            fontFamily:'vazir',
+            fontSize:'24px',
+            color:'#9E9E9E',
+            fontWeight:500
+        }}>
+            <Select
+                options={[
+                    { value: "1", label: "طبقه اول" },
+                    { value: "2", label: "طبقه دوم" },
+                    { value: "3", label: "طبقه سوم" },
+                    { value: "4", label: "طبقه چهارم" },
+                    { value: "5", label: "طبقه پنجم" },
+                    { value: "6", label: "طبقه ششم" },
+                    { value: "7", label: "طبقه هفتم" },
+                ]}
+                menuIsOpen={menuIsOpen}
+                onMenuOpen={() => setMenuIsOpen(true)}
+                onMenuClose={() => setMenuIsOpen(false)}
+                components={{ DropdownIndicator, ...customComponents }}
+                value={selectedValue}
+                onChange={handleSelectChange}
+                icon={<IoIosArrowDown/>}
+                placeholder='انتخاب طبقه'
+                styles={customStyles}
+            />
         </div>
     );
-}
-*/
-//-------------------------------------------------------------------------
-/*import * as React from 'react';
-import Box from '@mui/material/Box';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import KeyboardArrowDownRounded from '@mui/icons-material/KeyboardArrowDownRounded'; // اصلاح شده
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-const theme = createTheme({
-    direction: 'rtl', // راست به چپ
-    // سایر تنظیمات تم
-});
-const styles = {
-    label: {
-        direction: "rtl",
-        textAlign: 'right',
-        alignItems:'right'
-    },
-    icon: {
-        // تنظیمات مربوط به آیکون، اگر نیاز باشد
-    },
-    bg: {
-        width: 438,
-        height: 64,
-        backgroundColor: '#F3F3F3',
-        borderRadius: 45,
-        direction: 'rtl',
-        // display: 'flex', // اصلاح شده برای عملکرد بهتر در RTL
-        // justifyContent: 'flex-end', // اصلاح شده
-        // alignItems: 'right', // اصلاح شده
-        // padding: '0 20px', // افزوده شده برای فاصله داخلی
-        textAlign: 'right'
-    }
 };
 
-export default function SelectInput() {
-    const [project, setProject] = React.useState('');
-
-    const handleChange = (event) => {
-        setProject(event.target.value);
-    };
-
-    return (
-        <ThemeProvider theme={theme}>
-        <Box sx={{ minWidth: 120 }}>
-            <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label" sx={styles.label}>
-                    پروژه
-                </InputLabel>
-                <Select
-                    sx={styles.bg}
-                    IconComponent={KeyboardArrowDownRounded} // اصلاح شده
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    value={project}
-                    onChange={handleChange}
-                    label="Project"
-                >
-                    <MenuItem value={10} sx={styles.bg}>به سوی ظهور</MenuItem>
-                    <MenuItem value={20} sx={styles.bg}>اسمه احمد</MenuItem>
-                    <MenuItem value={30} sx={styles.bg}>ساختمان</MenuItem>
-                </Select>
-            </FormControl>
-            <br/>
-            فونت ایران یکان
-            <br/>
-            ویت ۵۰۰
-            <br/>
-            سایز ۲۰ پیکسل
-            <br/>
-            رنگ متن
-            #9E9E9E
-            <br/>
-            رنگ پس‌زمینه:
-            #F3F3F3
-            <br/>
-            عرض:۴۳۸
-            <br/>
-            ارتفاع:۶۴
-            <br/>
-            آیکون:
-            طول و عرض:۲۴
-            فاصله از چپ و بالا: ۴
-        </Box>
-        </ThemeProvider>
-    );
-}
-
- */
+export default SelectInput;
