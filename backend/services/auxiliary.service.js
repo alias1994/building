@@ -8,8 +8,10 @@ const errorHandler = (e) => {
         password:"رمزعبور",
         title:"عنوان",
         _id: "آیدی",
+        birthday: "تاریخ تولد"
     }
     e = e.toString()
+    console.log(e);
     if (e.includes("E11000")){
         const arr = e.match(/(?<={ )\w+(?=: )/g)
         let result = ""
