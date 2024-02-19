@@ -2,19 +2,20 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import { TreeView } from '@mui/x-tree-view/TreeView';
 import { TreeItem } from '@mui/x-tree-view/TreeItem';
-import { Container} from '@mui/material';
+import { Container } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-
+import './treeView.css';
+import styled from 'styled-components';
 
 
 const data = {
-  id: 'root',
-  title: 'پروژه ها',
+	id: 'root',
+	title: 'پروژه ها',
 
-  children: [
-    {
+	children: [
+		{
 			"id": "65cf312d52c2c25b64f56910",
 			"title": "ساختمان",
 			"children": [
@@ -52,80 +53,109 @@ const data = {
 			"title": "بدون زیر پروژه",
 			"children": []
 		}
-  ],
-  
+	],
+
 };
 
-export default function treeView () {
+export default function treeView() {
+	// const handleSelect = styled(TreeItem)(() => ({
+	// 	backgroundColor:'red'
+	// }))
 	const renderTree = (nodes) => (
 		<Container>
-		<TreeItem 
-		  nodeId={nodes.id} 
-		  label={
+
+			<TreeItem
 			
-		  <Typography
-		  sx={{
-		  borderRadius:'45px', 
-		  fontSize:'15px',
-		  color: 'black',
-		  mt:'1px',
-		  mb: '3px', 
-		  mr:'2px', 
-		  pr:'center', 
-		  p: '8px', 
-		  pb: '-3px', 
-		  fontFamily: 'Yekan, sans-serif',
-		  fontWeight:'bold', 
-		  textAlign: 'center',
-		  bgcolor: 'rgba(241, 95, 43, 0.2)',
-		  whiteSpace: 'nowrap',
-		  overflow: 'hidden',
-		  textOverflow: 'ellipsis',
-		  ":hover": {
-			border: "2px solid rgba(241, 95, 43, 1)",
-			backgroundColor: 'rgba(241, 95, 43, 0.25)',
-			overflow: 'visible',
-		  },
-		  maxHeight: "30px",
-		  maxWidth: 'auto',
-		  height: "fit-content",
-		  width: "100%",
-		  
-		  
-		  }} >
-			{nodes.title}</Typography>} 
-			dir='rtl'
+				sx={{
+					'& > .MuiTreeItem-content.Mui-selected': {
+						color: 'rgba(241, 95, 43, 1)',
+						textDecoration:'overline',
+						textDecorationStyle:'double',
+						textDecorationThickness:'2px',
+						// border: "2px solid rgba(241, 95, 43, 1)",
+						// backgroundColor: 'rgba(241, 95, 43, 0.25)',
+					},
+
+
+					'& .css-1bcfi89-MuiTreeItem-content.Mui-selected': {
+						backgroundColor: '#fff !important',
+					},
+					'& .css-1oqqzyl-MuiContainer-root': {
+						marginLeft: '-6.1%'
+					},
+					'& .css-i4bv87-MuiSvgIcon-root': {
+						marginRight: '-470%',
+						marginTop: '-20%'
+					},
+				}}
+				nodeId={nodes.id}
+				label={
+					<Typography
+						sx={{
+							borderRadius: '45px',
+							fontSize: '15px',
+							color: 'black',
+							//   mt:'1px',
+							mb: '3px',
+							//   mr:'2px', 
+							//   pr:'center', 
+							p: '8px 20px 8px 8px',
+							//   pb: '-3px', 
+							fontFamily: 'vazir',
+							textAlign: 'right',
+							bgcolor: 'rgba(241, 95, 43, 0.2)',
+							//SALAM
+							whiteSpace: 'nowrap',
+							overflow: 'hidden',
+							textOverflow: 'ellipsis',
+							//   "&$selected": {
+							// 	backgroundColor: "red"},
+							":hover": {
+								whiteSpace: 'normal',
+								border: "2px solid rgba(241, 95, 43, 1)",
+								backgroundColor: 'rgba(241, 95, 43, 0.25)',
+								overflow: 'visible',
+								// overflowWrap:'break-word',
+							},
+							maxHeight: "30px",
+							maxWidth: 'auto',
+							height: "fit-content",
+							width: "30%",
+
+
+						}} >
+						{nodes.title}</Typography>}
 			>
-		  
-		  {Array.isArray(nodes.children)
-			? nodes.children.map((node) => renderTree(node))
-			: null}
-		</TreeItem>
+
+				{Array.isArray(nodes.children)
+					? nodes.children.map((node) => renderTree(node))
+					: null}
+			</TreeItem>
 		</Container>
-		
-	  );
+
+	);
 
 
-  return (
-    <Box sx={{
-		
-		border: '1px solid gray',
-		height: '100hv',
-		width: '50%',
-		bgcolor: "white",
-		 }}
-		 
-		 >
-		<TreeView
-		  aria-label="rich object"
-		  defaultCollapseIcon={<ExpandLessIcon></ExpandLessIcon>}
-		  defaultExpandIcon={<ExpandMoreIcon></ExpandMoreIcon>}
-		  defaultExpanded={['root']}
+	return (
+		<Box sx={{
+
+			border: '1px solid gray',
+			height: '100hv',
+			width: '50%',
+			bgcolor: "white",
+		}}
+
 		>
-		  {renderTree(data)}
-		</TreeView>
-	  </Box>
-  )
+			<TreeView
+				aria-label="rich object"
+				defaultCollapseIcon={<ExpandLessIcon></ExpandLessIcon>}
+				defaultExpandIcon={<ExpandMoreIcon></ExpandMoreIcon>}
+				defaultExpanded={['root']}
+			>
+				{renderTree(data)}
+			</TreeView>
+		</Box>
+	)
 }
 
 
