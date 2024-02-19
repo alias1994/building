@@ -9,6 +9,9 @@ import { styled } from '@mui/material/styles';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { lime, purple ,orange} from '@mui/material/colors';
 import './custom-button.css'
+import {useDispatch} from "react-redux";
+import {useState} from "react";
+import {addUser} from "../redux/user/userSlice";
 
 
 const DemoButton = styled(Button)(({ theme }) => ({
@@ -30,9 +33,15 @@ const DemoButton = styled(Button)(({ theme }) => ({
   });
 
 function CustomButton (name){
+    const dispatch= useDispatch();
+    const[inputValue, setInputValue]= useState({firestname:'', lastname:'', username:'',password:''});
+    const handleSubmit=(e)=>{
+        e.preventDefault();
+        dispatch(addUser(inputValue))
+    }
     return(
     <ThemeProvider theme={theme}>
-      <DemoButton className='but' id='but1' variant="contained" color="secondary">{name}</DemoButton>
+      <DemoButton onClick={handleSubmit} className='but' id='but1' variant="contained" color="secondary">{name}</DemoButton>
     </ThemeProvider>
 )
 }

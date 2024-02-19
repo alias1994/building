@@ -1,12 +1,10 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
-import { Grid } from '@mui/material';
-import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 import './text-fild.css'
+import {useDispatch, useSelector} from "react-redux";
+import {useState} from "react";
 
 const DemoInput = styled(TextField)(({ theme }) => ({
     width: '340px',
@@ -29,7 +27,13 @@ const DemoInput = styled(TextField)(({ theme }) => ({
     }
 }))
 
-function TextFild(name) {
-    return (<Box><DemoInput className="inp" id="outlined-basic1" label={name} variant="outlined" InputLabelProps={{ style: { fontFamily: "vazir" , color:"#9E9E9E"} }} inputProps={{ style: { fontFamily: "vazir", textAlign: 'right'} }} /></Box>)
+function TextFild(name,stateName) {
+    const[inputValue, setInputValue]= useState({firestname:'', lastname:'', username:'',password:''});
+
+    const handleInput= (e)=>{
+        setInputValue({...inputValue, [stateName]: e.target.value});
+        console.log(stateName,e.target.value);
+    }
+    return (<Box><DemoInput onChange={handleInput} className="inp" id="outlined-basic1" label={name} variant="outlined" InputLabelProps={{ style: { fontFamily: "vazir" , color:"#9E9E9E"} }} inputProps={{ style: { fontFamily: "vazir", textAlign: 'right'} }} /></Box>)
 }
 export default TextFild;

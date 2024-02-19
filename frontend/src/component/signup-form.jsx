@@ -1,15 +1,21 @@
 import TextFild from './text-fild.jsx'
 import CustomButton from './custom-button.jsx'
+import { addUser } from "../redux/user/userSlice";
+import { useSelector, useDispatch } from "react-redux";
+import {useState} from "react";
 function SignupForm (name){
+
+
     return (
-        <div>
-            {TextFild('نام')}
-            {TextFild('نام خانوادگی')}
-            {TextFild('نام کاربری')}
-            {TextFild('رمز عبور')}
-            {TextFild('تکرار رمز عبور')}
-            {CustomButton('ثبت نام')}
-        </div>
+            <div>
+                {TextFild('نام','firestname')}
+                {TextFild('نام خانوادگی','lastname')}
+                {TextFild('نام کاربری','username')}
+                {TextFild('رمز عبور','password')}
+                {TextFild('تکرار رمز عبور')}
+                {CustomButton('ثبت نام')}
+            </div>
+
     )
 }
 
