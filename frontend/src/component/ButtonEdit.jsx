@@ -9,6 +9,7 @@ function ButtonEdit() {
         variant="h6"
         sx={{
           pointerEvents: "none",
+          
           color: "#F15F2B",
           border: "3px #F15F2B solid",
           bgcolor: "white",
