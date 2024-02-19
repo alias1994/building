@@ -90,6 +90,7 @@ const SelectInput = () => {
                     { value: "7", label: "طبقه هفتم" },
                 ]}
                 menuIsOpen={menuIsOpen}
+
                 onMenuOpen={() => setMenuIsOpen(true)}
                 onMenuClose={() => setMenuIsOpen(false)}
                 components={{ DropdownIndicator, ...customComponents }}
