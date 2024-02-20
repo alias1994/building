@@ -1,8 +1,18 @@
-import { log } from "console";
 import Auth from "../models/Auth.js";
 import User from "../models/User.js";
-import { errorHandler } from "./auxiliary.service.js";
+import { errorHandler, getIdByToken } from "./auxiliary.service.js";
 
+
+const checkToken = async function (req, res , next) {
+
+    if (req.path === "/signin" || req.path === "/register" || req.path === "/upload" || req.path === "/") next()
+    else {
+        const token = req.body.token
+        const foundedUser = await Auth.findOne({token})
+        if (foundedUser) next()
+        else res.send({type: "SIGNOUT"})   
+    }
+}
 
 const addToken = async (id) => {
     const rand = () => Math.random().toString(36).substr(2);
@@ -43,7 +53,6 @@ const signinUser = async (req, res) => {
         username : req.body.username, 
         password: req.body.password
     })
-    
     if (foundedUser){
         const newToken = await addToken(foundedUser._id)
         res.send({
@@ -68,19 +77,18 @@ const authUser = async (req, res) => {
         const signedUser = await User.findById(authedUser.userId)
         res.send({
             type: "SIGNIN",
-            body: { token: req.body.token,
-                    firstname: signedUser.firstname,
-                    lastname:  signedUser.lastname,
-                    username:  signedUser.username }
+            body:{ 
+                token: req.body.token,
+                firstname: signedUser.firstname,
+                lastname:  signedUser.lastname,
+                username:  signedUser.username
+            }
         })
-    } else {
-        res.send({ type: "SIGNOUT" })
-    }   
+    } else res.send({ type: "SIGNOUT" })
 }
 
 const getUser = async (req, res) => {
-    const authedUser = await Auth.findOne({token: req.body.token})
-    const foundedUser = await User.findById(authedUser.userId)
+    const foundedUser = await User.findById(getIdByToken(req.body.token))
     res.send(foundedUser)
 }
 
@@ -104,11 +112,11 @@ const updateUser = async (req, res) => {
     }
 }
 
-
 export {
     registerUser,
     signinUser,
     authUser,
     getUser,
-    updateUser
+    updateUser,
+    checkToken
 }

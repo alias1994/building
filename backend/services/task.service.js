@@ -20,7 +20,7 @@ const createTask = async (req, res) => {
             projectId: mainBody.projectId,
             ownerId: ownerId,
             floor: mainBody.floor,
-            desc: mainBody.desc,
+            description: mainBody.description,
             prerequisites: mainBody.prerequisites ? mainBody.prerequisites : null,
             reports: mainBody.reports ? mainBody.reports : null,
             assignees: mainBody.assignees ? mainBody.assignees : null,
@@ -44,7 +44,7 @@ const createTask = async (req, res) => {
                 title: newTask.title,
                 projectId: newTask.projectId,
                 floor: newTask.floor,
-                desc: newTask.desc
+                description: newTask.description
             } 
         })
     } catch (error) {
@@ -100,8 +100,6 @@ const updateTask = async (req, res) => {
             body: {txt : errorHandler(error)}
         })   
     }
-
-
 }
 
 export{

@@ -1,5 +1,11 @@
 import Auth from "../models/Auth.js"
 
+const textErrorResult = arr => {
+    let result = ""
+    arr.forEach(element => result += `${dict[element] || element} صحیح وارد نشده است \n`);
+    return result 
+}
+
 const errorHandler = (e) => {
     const dict = {
         firstname: "نام",
@@ -8,41 +14,25 @@ const errorHandler = (e) => {
         password:"رمزعبور",
         title:"عنوان",
         _id: "آیدی",
-        birthday: "تاریخ تولد"
+        birthday: "تاریخ تولد",
+        title: "عنوان"
     }
     e = e.toString()
-    console.log(e);
     if (e.includes("E11000")){
         const arr = e.match(/(?<={ )\w+(?=: )/g)
-        let result = ""
-        arr.forEach(element => {
-            result += `${dict[element]} قبلا وارد شده است. \n`
-        });
-        return result        
+        return textErrorResult(arr)
     }
     else if (e.match(/(?<=`)\w+(?=` is required)/g)){
         const arr = e.match(/(?<=`)\w+(?=` is required)/g)
-        let result = ""
-        arr.forEach(element => {
-            result += `${dict[element]} صحیح وارد نشده است \n`
-        });
-        return result
+        return textErrorResult(arr)
     } 
     else if (e.includes("Cast") && e.match(/(?<=path \\")\w+(?=\\")/g)){
         const arr = e.match(/(?<=path \\")\w+(?=\\")/g)
-        let result = ""
-        arr.forEach(element => {
-            result += `${dict[element]} صحیح وارد نشده است \n`
-        });
-        return result
+        return textErrorResult(arr)
     }
     else if (e.includes("Cast") && e.match(/(?<=path ")\w+(?=")/g)){
         const arr = e.match(/(?<=path ")\w+(?=")/g)
-        let result = ""
-        arr.forEach(element => {
-            result += `${dict[element]} صحیح وارد نشده است \n`
-        });
-        return result
+        return textErrorResult(arr)
     }
     else{
         return e.toString()
