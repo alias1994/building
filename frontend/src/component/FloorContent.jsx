@@ -1,5 +1,11 @@
 import React from 'react'
 import { Avatar, Container} from '@mui/material'
+import Paper from '@mui/material/Paper';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+
+
+
 
 export default  function FloorContent() {
 
@@ -30,37 +36,27 @@ export default  function FloorContent() {
 
 
   return (
-
-      <Container  sx={{
-        display: 'flex',
-        width: '600px',
+<Paper
+dir='rtl'
+sx={{
+    overflow:'auto',
+    width: '600px',
         height: '116px',
         borderRadius: '20px',
         boxShadow: '3',
         bgcolor: 'lightgray',
-        whiteSpace: 'nowrap',
-        overflowX: 'scroll',
+        // whiteSpace: 'nowrap',
+        // overflowX: 'auto',
         m:"auto",
         position: 'relative',
-        
-        // '&::-webkit-scrollbar': {
-        //   width: '8px',
-        //   height: '8px',
-        //   borderRadius: '8px',
-        //   backgroundColor: 'rgba(0,0,0,0.1)',
-        // },
-        // '&::-webkit-scrollbar-thumb': {
-        //   borderRadius: '8px',
-        //   backgroundColor: 'rgba(0,0,0,0.5)',
-        // },
+        scrollMargin:'100px',
+}}
+>
 
-        // کامنت های بالا برای استایل دهی به اسکرول بار هستند
-
-        }}>
+        <Card sx={{ minWidth: '100vh', overflow: 'auto' }}>
           {avatars}
-            
-      </Container>
-      
+          </Card> 
+      </Paper>
     
   )
 }
