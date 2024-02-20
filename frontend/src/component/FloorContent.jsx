@@ -8,6 +8,7 @@ export default  function FloorContent() {
   for (let i = 0; i < 15; i++) {
     avatars.push(
       <Avatar
+      
         key={i}
         sx={{
           width: '76px',
