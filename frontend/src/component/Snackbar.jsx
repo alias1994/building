@@ -3,7 +3,7 @@ import {Typography , Alert , Snackbar , Grid , Button} from '@mui/material';
 
 import './text-fild.css'
 
-export default function CustomizedSnackbars(text) {
+export default function CustomizedSnackbars({text}) {
   const [open, setOpen] = React.useState(false);
 
   const handleClick = () => {
@@ -21,7 +21,6 @@ export default function CustomizedSnackbars(text) {
   return (
     <Grid
       sx={{
-        width: "400px",
         height: "40px",
         position: "relative",
         width: '100%'

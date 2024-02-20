@@ -27,13 +27,7 @@ const DemoInput = styled(TextField)(({ theme }) => ({
     }
 }))
 
-function TextFild(name,stateName) {
-    const[inputValue, setInputValue]= useState({firestname:'', lastname:'', username:'',password:''});
-
-    const handleInput= (e)=>{
-        setInputValue({...inputValue, [stateName]: e.target.value});
-        console.log(stateName,e.target.value);
-    }
-    return (<Box><DemoInput onChange={handleInput} className="inp" id="outlined-basic1" label={name} variant="outlined" InputLabelProps={{ style: { fontFamily: "vazir" , color:"#9E9E9E"} }} inputProps={{ style: { fontFamily: "vazir", textAlign: 'right'} }} /></Box>)
+function TextFild({stateName,name,handleInput}) {
+    return (<Box><DemoInput name={stateName} onChange={handleInput} className="inp" id="outlined-basic1" label={name} variant="outlined" InputLabelProps={{ style: { fontFamily: "vazir" , color:"#9E9E9E"} }} inputProps={{ style: { fontFamily: "vazir", textAlign: 'right'} }} /></Box>)
 }
 export default TextFild;
