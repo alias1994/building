@@ -1,7 +1,18 @@
 import Auth from "../models/Auth.js";
 import User from "../models/User.js";
-import { errorHandler } from "./auxiliary.service.js";
+import { errorHandler, getIdByToken } from "./auxiliary.service.js";
 
+
+const checkToken = async function (req, res , next) {
+
+    if (req.path === "/signin" || req.path === "/register" || req.path === "/upload" || req.path === "/") next()
+    else {
+        const token = req.body.token
+        const foundedUser = await Auth.findOne({token})
+        if (foundedUser) next()
+        else res.send({type: "SIGNOUT"})   
+    }
+}
 
 const addToken = async (id) => {
     const rand = () => Math.random().toString(36).substr(2);
@@ -42,7 +53,6 @@ const signinUser = async (req, res) => {
         username : req.body.username, 
         password: req.body.password
     })
-    
     if (foundedUser){
         const newToken = await addToken(foundedUser._id)
         res.send({
@@ -67,25 +77,50 @@ const authUser = async (req, res) => {
         const signedUser = await User.findById(authedUser.userId)
         res.send({
             type: "SIGNIN",
-            body: { token: req.body.token,
-                    firstname: signedUser.firstname,
-                    lastname:  signedUser.lastname,
-                    username:  signedUser.username }
+            body:{ 
+                token: req.body.token,
+                firstname: signedUser.firstname,
+                lastname:  signedUser.lastname,
+                username:  signedUser.username
+            }
         })
-    } else {
-        res.send({ type: "SIGNOUT" })
-    }   
+    } else res.send({ type: "SIGNOUT" })
 }
 
 const getUser = async (req, res) => {
+    console.log("salamd dsasd");
+    console.log(req.body.token);
     const authedUser = await Auth.findOne({token: req.body.token})
-    const foundedUser = await User.findById(authedUser.userId)
+    console.log(authedUser);
+    const foundedUser = await User.findById(authedUser._id)
     res.send(foundedUser)
 }
-export {
 
+const updateUser = async (req, res) => {
+    try {
+        const filter = {_id: req.body.body.id}
+        const update = (req.body.body)
+        delete(update.id)
+        await User.findByIdAndUpdate(filter, update)
+        const updatedUser = await User.findOne(filter)
+        res.send({
+            type: "UPDATE_USER",
+            body:{updatedUser}
+        })
+        
+    } catch (error) {
+        res.send({
+            type: "ERROR",
+            body: {txt : errorHandler(error)}
+        })   
+    }
+}
+
+export {
     registerUser,
     signinUser,
     authUser,
-    getUser
+    getUser,
+    updateUser,
+    checkToken
 }

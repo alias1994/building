@@ -1,11 +1,11 @@
 import multer from 'multer';
-import * as fs from "fs"
+import {existsSync, mkdirSync} from "fs"
 
 const storage = multer.diskStorage({
     destination: function (req, file, callback) {
         var dir = './uploads';
-        if (!fs.existsSync(dir)){
-            fs.mkdirSync(dir);
+        if (!existsSync(dir)){
+            mkdirSync(dir);
         }
         callback(null, dir);
     },

@@ -1,19 +1,12 @@
 import mongoose from 'mongoose'
 
-const reportSchema = new mongoose.Schema({
+const ReportSchema = new mongoose.Schema({
     userId : {
         type: mongoose.Types.ObjectId,
         required: true
     },
     reportText: {   
         type : String,
-        required: true
-    }
-})
-
-const userIdSchema = new mongoose.Schema({
-    userID: {
-        type: mongoose.Types.ObjectId, 
         required: true
     }
 })
@@ -27,7 +20,7 @@ const FileSchema = new mongoose.Schema({
     },
     path: {
         type: String,
-
+        default: `./uploads/${filename}`
     }    
 })
 
@@ -37,6 +30,10 @@ const ImageSchema = new mongoose.Schema({
     },
     contenttype: {
         type: String,
+        enum: {
+            values: ['image/jpeg', 'image/png'],
+            message : "enum validator failded, state must be `is_done` or `is_active` "
+        }
     },
     path: {
         type: String,
@@ -46,7 +43,6 @@ const ImageSchema = new mongoose.Schema({
 const TaskSchema = new mongoose.Schema({
     title: {
         type: String,
-        unique: true, 
         required: true
     },
     projectId: {
@@ -57,7 +53,7 @@ const TaskSchema = new mongoose.Schema({
         type: Number,
         required : true
     },
-    desc: {
+    description: {
         type: String,
         required: true
     },
@@ -73,14 +69,14 @@ const TaskSchema = new mongoose.Schema({
         default: "is_active",
     },
     reports: {
-        type: [reportSchema]
+        type: [ReportSchema]
     },
     ownerId : {
         type: mongoose.Types.ObjectId,
         required: true
     },
     assignees: {
-        type: [userIdSchema]
+        type: [mongoose.type.ObjectId]
     },
     image: {
         type: ImageSchema,
