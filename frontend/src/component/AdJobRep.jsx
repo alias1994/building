@@ -12,24 +12,17 @@ function AddJobReport() {
         bgcolor: "white",
         borderRadius: "30px",
         fontSize: "36px",
-        
       }}
-      container direction= "column" 
+      container
+      direction="column"
       alignItems="center"
       justify="center"
-
       margin={40}
     >
-      {/* <TextField variant="outlined" >
-        افزودن گزارش کار 
-      </TextField> */}
-
-    <Grid minHeight={60}/>
+      <Grid minHeight={60} />
       افزودن گزارش کار
     </Grid>
   );
 }
 
 export default AddJobReport;
-
-
