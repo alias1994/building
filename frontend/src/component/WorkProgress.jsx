@@ -38,5 +38,4 @@ const WorkProgress = () => {
     </Paper>
   );
 };
-
 export default WorkProgress;
