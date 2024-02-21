@@ -57,6 +57,7 @@ export default function ShowAvatar(){
               fontFamily: 'vazir',
               fontSize: '20px',  
               border: '1px solid lightgray',
+              
           }}
           >{data.username}</Typography>
           <Avatar sx={{
