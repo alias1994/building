@@ -28,7 +28,7 @@ const ProjectSchema = new mongoose.Schema({
         type: String,
         enum: {
             values : ["is_done" , "is_active"],
-            message : "enum validator failded, state must be `is_done` or `is_active` "
+            message : "حالت پروژه باید is_done یا is_active باشد"
         },
         default: "is_active"
     }

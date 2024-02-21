@@ -1,6 +1,6 @@
 import Auth from "../models/Auth.js";
 import User from "../models/User.js";
-import { errorHandler, getIdByToken } from "./auxiliary.service.js";
+import { errorHandler } from "./auxiliary.service.js";
 
 
 const checkToken = async function (req, res , next) {
@@ -87,40 +87,11 @@ const authUser = async (req, res) => {
     } else res.send({ type: "SIGNOUT" })
 }
 
-const getUser = async (req, res) => {
-    console.log("salamd dsasd");
-    console.log(req.body.token);
-    const authedUser = await Auth.findOne({token: req.body.token})
-    console.log(authedUser);
-    const foundedUser = await User.findById(authedUser._id)
-    res.send(foundedUser)
-}
 
-const updateUser = async (req, res) => {
-    try {
-        const filter = {_id: req.body.body.id}
-        const update = (req.body.body)
-        delete(update.id)
-        await User.findByIdAndUpdate(filter, update)
-        const updatedUser = await User.findOne(filter)
-        res.send({
-            type: "UPDATE_USER",
-            body:{updatedUser}
-        })
-        
-    } catch (error) {
-        res.send({
-            type: "ERROR",
-            body: {txt : errorHandler(error)}
-        })   
-    }
-}
 
 export {
     registerUser,
     signinUser,
     authUser,
-    getUser,
-    updateUser,
     checkToken
 }

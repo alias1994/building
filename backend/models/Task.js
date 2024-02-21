@@ -31,7 +31,7 @@ const ImageSchema = new mongoose.Schema({
         type: String,
         enum: {
             values: ['image/jpeg', 'image/png'],
-            message : "enum validator failded, state must be `is_done` or `is_active` "
+            message : "کانتنت تایپ تصویر باید 'image/jpeg' یا 'image/png' باشد "
         }
     },
     path: {
@@ -50,7 +50,11 @@ const TaskSchema = new mongoose.Schema({
     },
     floor: {
         type: Number,
-        required : true
+        required : true,
+        enum: {
+            values : [1 , 2 , 3 , 4 , 5 , 6 , 7],
+            message : "طبقه باید 1 تا 7 باشد"
+        }
     },
     description: {
         type: String,
@@ -63,7 +67,7 @@ const TaskSchema = new mongoose.Schema({
         type: String,
         enum: {
             values : ["is_done" , "is_active"],
-            message : "enum validator failded, state must be `is_done` or `is_active` "
+            message : "حالت پروژه باید is_done یا is_active باشد"
         },
         default: "is_active",
     },

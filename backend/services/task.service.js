@@ -77,7 +77,6 @@ const getTask = async (req, res) => {
 const updateTask = async (req, res) => {
     try {
         const filter = {_id: req.body.body.id}
-        console.log(filter);
         const update = (req.body.body)
         delete(update.id)
         await Task.findByIdAndUpdate(filter, update)
@@ -102,8 +101,25 @@ const updateTask = async (req, res) => {
     }
 }
 
+const getTasks = async (req, res) => {
+    try {
+    const tasksArr = await Task.find({})
+    let buldingArr = [[1], [2] ,[3] , [4] , [5] , [6] , [7]]
+    buldingArr = buldingArr.map(x => tasksArr.filter(t => t.floor === x[0]).map(t => {return {title: t.title , description: t.description}}))
+    res.send({ 
+        type: 'GET_TASKS',
+        body: buldingArr
+    })
+    } catch (error) {
+        res.send({
+            type: "ERROR",
+            body: {txt : errorHandler(error)}
+        })     
+    }}
+
 export{
     createTask,
     getTask,
-    updateTask
+    updateTask,
+    getTasks
 }
