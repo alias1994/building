@@ -88,7 +88,11 @@ const authUser = async (req, res) => {
 }
 
 const getUser = async (req, res) => {
-    const foundedUser = await User.findById(getIdByToken(req.body.token))
+    console.log("salamd dsasd");
+    console.log(req.body.token);
+    const authedUser = await Auth.findOne({token: req.body.token})
+    console.log(authedUser);
+    const foundedUser = await User.findById(authedUser._id)
     res.send(foundedUser)
 }
 
