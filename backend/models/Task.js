@@ -20,7 +20,6 @@ const FileSchema = new mongoose.Schema({
     },
     path: {
         type: String,
-        default: `./uploads/${filename}`
     }    
 })
 
@@ -76,7 +75,7 @@ const TaskSchema = new mongoose.Schema({
         required: true
     },
     assignees: {
-        type: [mongoose.type.ObjectId]
+        type: [mongoose.Types.ObjectId]
     },
     image: {
         type: ImageSchema,
