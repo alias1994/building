@@ -1,0 +1,7 @@
+@font-face {
+    font-family: yekan;
+    src: url(../font/test.woff2) format('woff2');
+}
+h2{
+    font-family: yekan;
+}

@@ -1,13 +1,16 @@
-import logo from './logo.svg';
+import React from 'react';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
 import './App.css';
-import Signin from './signin/signin.jsx';
+import LoginSignup from "./component/login-signup";
 
 function App() {
-  return (
-    <div className="App">
-      <Signin />
-    </div>
-  );
+
+    return (
+        <Box>
+            <LoginSignup/>
+        </Box>
+    )
 }
 
 export default App;

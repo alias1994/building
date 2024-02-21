@@ -1,0 +1,8 @@
+@font-face {
+    font-family: vazir;
+    /* src: url(../font/Vazir-Medium.eot) format('eot');
+    src: url(../font/Vazir-Medium.ttf) format('ttf');
+    src: url(../font/Vazir-Medium.woff) format('woff');
+    src: url(../font/Vazir-Medium.woff2) format('woff2'); */
+    src: url(../font/test.woff2) format('woff2');
+  }
