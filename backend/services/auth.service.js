@@ -1,4 +1,3 @@
-import { log } from "console";
 import Auth from "../models/Auth.js";
 import User from "../models/User.js";
 import { errorHandler } from "./auxiliary.service.js";
@@ -79,11 +78,8 @@ const authUser = async (req, res) => {
 }
 
 const getUser = async (req, res) => {
-    console.log("salamd dsasd");
-    console.log(req.body.token);
     const authedUser = await Auth.findOne({token: req.body.token})
-    console.log(authedUser);
-    const foundedUser = await User.findById(authedUser._id)
+    const foundedUser = await User.findById(authedUser.userId)
     res.send(foundedUser)
 }
 export {
