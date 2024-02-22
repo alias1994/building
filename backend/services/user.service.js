@@ -1,4 +1,5 @@
-import { errorHandler, getIdByToken } from "./auxiliary.service";
+import User from "../models/User.js";
+import { errorHandler, getIdByToken } from "./auxiliary.service.js";
 
 const getUser = async (req, res) => {
     const foundedUser = await User.findById(getIdByToken(req.body.token))
@@ -25,8 +26,25 @@ const updateUser = async (req, res) => {
     }
 }
 
+const searchUsers  = async (req, res) => {
+    const value = req.body.body.value
+    let users = await User.find({ $or: [
+        {firstname: { "$regex": value, "$options": "i" } },
+        {lastname: { "$regex": value, "$options": "i" }},
+        {username:{ "$regex": value, "$options": "i" }}
+    ] })
 
+    users = users.map(user => {
+        return {
+            firstname: user.firstname,
+            lastname: user.lastname,
+            username: user.username
+        }})
+    res.send(users)
+
+}
 export {
     getUser,
-    updateUser
+    updateUser,
+    searchUsers
 }

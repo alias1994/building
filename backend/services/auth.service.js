@@ -72,9 +72,9 @@ const signinUser = async (req, res) => {
 }
 
 const authUser = async (req, res) => {
-    const authedUser = await Auth.findOne({token: req.body.token })
-    if (authedUser){
-        const signedUser = await User.findById(authedUser.userId)
+    const authenticatedUser = await Auth.findOne({token: req.body.token })
+    if (authenticatedUser){
+        const signedUser = await User.findById(authenticatedUser.userId)
         res.send({
             type: "SIGNIN",
             body:{ 
